@@ -1,0 +1,110 @@
+<div class="about-container">
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a routerLink="/home">Home</a> <span>/</span> <span>About Us</span>
+      </div>
+      <h1>About {{ hospital.shortName }}</h1>
+      <p>Specialist surgical and endoscopic care in Nnewi, Anambra State</p>
+    </div>
+  </section>
+
+  <section class="overview-section">
+    <div class="container">
+      <div class="overview-grid">
+        <div class="overview-text">
+          <div class="section-label">Who We Are</div>
+          <h2>A Specialist Centre Built for Precision Care</h2>
+          <p>Oluchukwu Specialist Hospital and Endoscopy is a dedicated specialist hospital located in Nnewi, Anambra State. We provide comprehensive surgical and endoscopic services to patients across South-East Nigeria and beyond.</p>
+          <p>Our hospital is equipped with modern endoscopy suites and surgical theatres, staffed by experienced surgeons and clinical professionals who are committed to delivering safe, effective, and compassionate care.</p>
+          <p>We specialise in Upper GI Endoscopy, Colonoscopy, Laparoscopic Cholecystectomy, Laparoscopic Appendectomy, and a broad range of multidisciplinary surgical services.</p>
+        </div>
+        <div class="overview-highlights">
+          <div class="highlight-card">
+            <div class="highlight-icon"><app-icon name="microscope" size="28"></app-icon></div>
+            <h3>Endoscopy Services</h3>
+            <p>Upper GI Endoscopy and Colonoscopy performed by specialist gastroenterologists</p>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon"><app-icon name="scissors" size="28"></app-icon></div>
+            <h3>Laparoscopic Surgery</h3>
+            <p>Minimally invasive procedures for faster recovery and less post-operative pain</p>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon"><app-icon name="activity" size="28"></app-icon></div>
+            <h3>Multidisciplinary Surgery</h3>
+            <p>Comprehensive surgical care across a wide range of specialist conditions</p>
+          </div>
+          <div class="highlight-card emergency-card">
+            <div class="highlight-icon emergency-icon"><app-icon name="alert" size="28"></app-icon></div>
+            <h3>Emergency Care</h3>
+            <p>Emergency surgical services available — call {{ hospital.emergency }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mission-section bg-light">
+    <div class="container">
+      <div class="mv-grid">
+        <div class="mv-card mission">
+          <div class="mv-icon"><app-icon name="target" size="32"></app-icon></div>
+          <h3>Our Mission</h3>
+          <p>{{ hospital.mission }}</p>
+        </div>
+        <div class="mv-card vision">
+          <div class="mv-icon"><app-icon name="star" size="32"></app-icon></div>
+          <h3>Our Vision</h3>
+          <p>{{ hospital.vision }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-label">Why Choose Us</div>
+        <h2>What Sets Us Apart</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card" *ngFor="let item of whyChooseUs">
+          <div class="why-icon-wrap"><app-icon [name]="item.iconName" size="28"></app-icon></div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="philosophy-section bg-light">
+    <div class="container">
+      <div class="philosophy-content text-center">
+        <div class="section-label">Our Approach</div>
+        <h2>Patient-Centred Care at Every Step</h2>
+        <p class="philosophy-text">At Oluchukwu Specialist Hospital, every patient is treated as an individual. We take time to explain your diagnosis, discuss your treatment options, and answer your questions. From your first consultation to your post-operative follow-up, our team is with you every step of the way.</p>
+        <p class="philosophy-text">We do not make exaggerated promises. We provide honest, evidence-based clinical care with the goal of achieving the best possible outcome for each patient.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content text-center">
+        <h2>Ready to Book a Consultation?</h2>
+        <p>Contact us today or book an appointment with our specialist team.</p>
+        <div class="cta-actions">
+          <button class="btn btn-white" (click)="goToBooking()">
+            <app-icon name="calendar" size="18"></app-icon> Book Appointment
+          </button>
+          <button class="btn btn-outline-white" (click)="goToContact()">
+            <app-icon name="phone" size="18"></app-icon> Contact Us
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

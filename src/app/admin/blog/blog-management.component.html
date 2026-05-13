@@ -1,0 +1,151 @@
+<div class="blog-mgmt">
+
+  <div class="mgmt-header">
+    <div>
+      <div class="mgmt-title">Blog Management</div>
+      <div class="mgmt-sub">Create and manage blog posts</div>
+    </div>
+    <button class="btn btn-primary" (click)="openCreate()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      New Post
+    </button>
+  </div>
+
+  <!-- Success -->
+  <div class="success-bar" *ngIf="successMsg">{{ successMsg }}</div>
+
+  <!-- Filters -->
+  <div class="filters-bar">
+    <input class="search-input" [(ngModel)]="searchTerm" (input)="applyFilters()" placeholder="Search posts…">
+    <select [(ngModel)]="statusFilter" (change)="applyFilters()">
+      <option value="">All Statuses</option>
+      <option value="published">Published</option>
+      <option value="draft">Draft</option>
+    </select>
+  </div>
+
+  <!-- Skeleton -->
+  <div *ngIf="loading" class="skeleton-list">
+    <div class="skel" *ngFor="let i of [1,2,3,4]"></div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap" *ngIf="!loading">
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Author</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of filtered">
+          <td class="post-title-cell">{{ post.title }}</td>
+          <td><span class="cat-chip" *ngIf="post.category">{{ post.category }}</span></td>
+          <td class="meta-text">{{ post.authorName }}</td>
+          <td>
+            <span class="status-badge" [class.st-published]="post.status === 'published'" [class.st-draft]="post.status === 'draft'">
+              {{ post.status | titlecase }}
+            </span>
+          </td>
+          <td class="meta-text">{{ formatDate(post.publishedAt || post.createdAt) }}</td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-sm btn-outline" (click)="openEdit(post)">Edit</button>
+              <button class="btn btn-sm" [class.btn-amber]="post.status === 'published'" [class.btn-green]="post.status === 'draft'" (click)="togglePublish(post)">
+                {{ post.status === 'published' ? 'Unpublish' : 'Publish' }}
+              </button>
+              <button class="btn btn-sm btn-danger" (click)="confirmDelete(post.id)">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="empty" *ngIf="filtered.length === 0">No posts found</div>
+  </div>
+
+</div>
+
+<!-- Post Form Modal -->
+<div class="modal-overlay" *ngIf="showForm" (click)="showForm = false">
+  <div class="modal" (click)="$event.stopPropagation()" [formGroup]="form">
+    <div class="modal-header">
+      <div class="modal-title">{{ editingId ? 'Edit Post' : 'New Post' }}</div>
+      <button class="modal-close" (click)="showForm = false">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row-2">
+        <div class="form-group">
+          <label>Title *</label>
+          <input formControlName="title" placeholder="Post title">
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select formControlName="category">
+            <option value="">Select category</option>
+            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Excerpt</label>
+        <input formControlName="excerpt" placeholder="Short description shown in listings">
+      </div>
+      <div class="form-group">
+        <label>Featured Image</label>
+        <app-image-upload
+          [currentUrl]="form.get('featuredImage')?.value"
+          folder="blog"
+          label="Upload Featured Image"
+          (uploaded)="form.patchValue({ featuredImage: $event })">
+        </app-image-upload>
+      </div>
+      <div class="form-group">
+        <label>Content *</label>
+        <textarea formControlName="content" rows="12" placeholder="Write your post content here. You can use HTML tags for formatting."></textarea>
+        <div class="content-hint">Tip: Use &lt;h2&gt;, &lt;p&gt;, &lt;strong&gt;, &lt;ul&gt;, &lt;blockquote&gt; for formatting</div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label>Tags</label>
+          <input formControlName="tags" placeholder="health, surgery, endoscopy (comma separated)">
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select formControlName="status">
+            <option value="draft">Draft</option>
+            <option value="published">Published</option>
+          </select>
+        </div>
+      </div>
+      <div class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" (click)="showForm = false">Cancel</button>
+      <button class="btn btn-primary" (click)="submit()" [disabled]="submitting">
+        {{ submitting ? 'Saving…' : (editingId ? 'Update Post' : 'Create Post') }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal-overlay" *ngIf="deleteConfirmId" (click)="deleteConfirmId = null">
+  <div class="modal modal-sm" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-title">Delete Post</div>
+      <button class="modal-close" (click)="deleteConfirmId = null">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete this post? This cannot be undone.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" (click)="deleteConfirmId = null">Cancel</button>
+      <button class="btn btn-danger" (click)="doDelete()">Delete</button>
+    </div>
+  </div>
+</div>

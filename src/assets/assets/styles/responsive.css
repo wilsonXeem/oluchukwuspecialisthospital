@@ -1,0 +1,123 @@
+/* Mobile Responsive Design */
+
+/* Mobile First Approach */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .navbar-brand h2 {
+    font-size: 1.2rem;
+  }
+  
+  .navbar-actions {
+    gap: 0.5rem;
+  }
+  
+  .user-name, .user-role {
+    display: none;
+  }
+  
+  .sidebar {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .sidebar.mobile-open {
+    left: 0;
+  }
+  
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+  
+  .card {
+    margin-bottom: 1rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  .form-control {
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 0.75rem;
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .modal-content {
+    margin: 1rem;
+    max-width: calc(100vw - 2rem);
+  }
+  
+  .toast-container {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+  }
+  
+  .toast {
+    min-width: auto;
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .navbar {
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .sidebar {
+    width: 200px;
+  }
+  
+  .main-content {
+    margin-left: 200px;
+    padding: 1.5rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+  .navbar {
+    padding: 1rem 2rem;
+  }
+  
+  .sidebar {
+    width: 250px;
+  }
+  
+  .main-content {
+    margin-left: 250px;
+    padding: 2rem;
+  }
+}
+
+/* Touch-friendly elements */
+@media (hover: none) and (pointer: coarse) {
+  .btn, .form-control, .card {
+    min-height: 44px; /* iOS recommended touch target */
+  }
+  
+  .dropdown-menu a {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .icon {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}

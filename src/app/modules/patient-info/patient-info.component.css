@@ -1,0 +1,45 @@
+.patient-info-container { min-height: 100vh; }
+.page-hero { background: linear-gradient(135deg, #005b8f 0%, #0b2d4d 100%); color: white; padding: 60px 0 50px; }
+.breadcrumb { font-size: 0.85rem; opacity: 0.7; margin-bottom: var(--spacing-md); }
+.breadcrumb a { color: white; text-decoration: none; }
+.breadcrumb span { margin: 0 8px; }
+.page-hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: var(--spacing-sm); }
+.page-hero p { font-size: 1.1rem; opacity: 0.85; margin: 0; }
+.info-section { padding: var(--spacing-3xl) 0; background: white; }
+.info-block { margin-bottom: var(--spacing-3xl); padding-bottom: var(--spacing-3xl); border-bottom: 1px solid #f1f5f9; }
+.info-block:last-child { border-bottom: none; }
+.info-block h2 { font-size: 1.5rem; font-weight: 700; color: var(--text-dark); margin-bottom: var(--spacing-xl); }
+.block-heading { display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-xl); }
+.block-icon { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: rgba(0,91,143,0.08); border-radius: 10px; color: var(--primary); flex-shrink: 0; }
+.block-heading h2 { margin-bottom: 0; }
+.emergency-block .emergency-icon { background: rgba(220,38,38,0.08); color: #dc2626; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); }
+.info-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: var(--radius-lg); padding: var(--spacing-xl); }
+.info-card h4 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: var(--spacing-md); }
+.info-card ul { list-style: none; padding: 0; margin: 0; }
+.info-card li { padding: 6px 0 6px var(--spacing-lg); position: relative; font-size: 0.9rem; color: #4b5563; border-bottom: 1px solid #f1f5f9; }
+.info-card li::before { content: '•'; position: absolute; left: 0; color: var(--primary); font-weight: 700; }
+.info-card li:last-child { border-bottom: none; }
+.emergency-note { margin-top: var(--spacing-md); background: #fef2f2; border-radius: var(--radius-md); padding: var(--spacing-md); font-size: 0.875rem; color: #991b1b; }
+.emergency-note a { color: #dc2626; font-weight: 700; text-decoration: none; }
+.prep-steps { display: flex; flex-direction: column; gap: var(--spacing-md); }
+.prep-step { display: flex; gap: var(--spacing-md); align-items: flex-start; background: #f8fafc; border-radius: var(--radius-md); padding: var(--spacing-md) var(--spacing-lg); }
+.step-num { width: 32px; height: 32px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem; flex-shrink: 0; }
+.prep-step p { margin: 0; color: #4b5563; font-size: 0.95rem; line-height: 1.6; padding-top: 4px; }
+.emergency-block { background: #fef2f2; border: 1px solid #fca5a5; border-radius: var(--radius-lg); padding: var(--spacing-xl); }
+.emergency-block h2 { color: #991b1b; }
+.emergency-block p { color: #7f1d1d; margin-bottom: var(--spacing-md); }
+.emergency-list { list-style: none; padding: 0; margin: 0 0 var(--spacing-xl); }
+.emergency-list li { display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #7f1d1d; font-size: 0.9rem; }
+.em-icon { color: #dc2626; display: flex; align-items: center; flex-shrink: 0; }
+.emergency-call-btn { display: inline-flex; align-items: center; gap: 8px; background: #dc2626; color: white; padding: 14px 28px; border-radius: var(--radius-lg); text-decoration: none; font-weight: 700; font-size: 1rem; transition: background var(--transition-fast); }
+.emergency-call-btn:hover { background: #b91c1c; }
+.faq-list { display: flex; flex-direction: column; gap: 2px; }
+.faq-item { border: 1px solid #e2e8f0; border-radius: var(--radius-md); overflow: hidden; }
+.faq-question { width: 100%; background: #f8fafc; border: none; padding: var(--spacing-lg); text-align: left; font-size: 0.95rem; font-weight: 600; color: var(--text-dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background var(--transition-fast); }
+.faq-question:hover, .faq-question.open { background: #eff8ff; color: var(--primary); }
+.faq-toggle { display: flex; align-items: center; color: var(--primary); flex-shrink: 0; margin-left: var(--spacing-md); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.faq-answer.visible { max-height: 200px; }
+.faq-answer p { padding: var(--spacing-md) var(--spacing-lg); color: #4b5563; font-size: 0.9rem; line-height: 1.7; margin: 0; }
+@media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; } .page-hero h1 { font-size: 1.75rem; } }

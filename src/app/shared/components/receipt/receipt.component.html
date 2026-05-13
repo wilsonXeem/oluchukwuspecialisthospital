@@ -1,0 +1,41 @@
+<div class="receipt-container">
+  <div class="receipt-header">
+    <h3>Payment Receipt</h3>
+    <p class="receipt-number">Receipt #: {{receiptNumber}}</p>
+    <p class="receipt-date">Date: {{receiptDate | dateFormat:'dd/MM/yyyy HH:mm'}}</p>
+  </div>
+  
+  <div class="receipt-body">
+    <div class="patient-info" *ngIf="patientInfo">
+      <h4>Patient Information</h4>
+      <p><strong>Name:</strong> {{patientInfo.name}}</p>
+      <p><strong>ID:</strong> {{patientInfo.id}}</p>
+    </div>
+    
+    <div class="items-list">
+      <h4>Items/Services</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items">
+            <td>{{item.description}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.unitPrice | currency}}</td>
+            <td>{{item.total | currency}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="receipt-total">
+      <p><strong>Total Amount: {{totalAmount | currency}}</strong></p>
+    </div>
+  </div>
+</div>

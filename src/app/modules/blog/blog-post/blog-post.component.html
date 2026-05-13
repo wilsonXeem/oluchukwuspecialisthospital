@@ -1,0 +1,95 @@
+<div class="post-page">
+
+  <!-- Skeleton -->
+  <div class="container post-skeleton" *ngIf="loading">
+    <div class="skel title-skel"></div>
+    <div class="skel meta-skel"></div>
+    <div class="skel img-skel"></div>
+    <div class="skel line" *ngFor="let i of [1,2,3,4,5]"></div>
+  </div>
+
+  <ng-container *ngIf="!loading && post">
+
+    <!-- Hero -->
+    <div class="post-hero" [style.backgroundImage]="post.featuredImage ? 'url(' + post.featuredImage + ')' : 'none'"
+         [class.no-image]="!post.featuredImage">
+      <div class="post-hero-overlay"></div>
+      <div class="container">
+        <div class="post-hero-content">
+          <span class="post-category-badge" *ngIf="post.category">{{ post.category }}</span>
+          <h1>{{ post.title }}</h1>
+          <div class="post-meta">
+            <span>{{ formatDate(post.publishedAt) }}</span>
+            <span class="dot">·</span>
+            <span>By {{ post.authorName }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="container post-layout">
+      <article class="post-content">
+        <p class="post-excerpt-lead" *ngIf="post.excerpt">{{ post.excerpt }}</p>
+        <div class="post-body" [innerHTML]="post.content"></div>
+
+        <!-- Tags -->
+        <div class="post-tags" *ngIf="getTags().length > 0">
+          <span class="tags-label">Tags:</span>
+          <span class="tag" *ngFor="let tag of getTags()">{{ tag }}</span>
+        </div>
+
+        <!-- Back -->
+        <div class="post-footer">
+          <button class="btn btn-outline" routerLink="/blog">
+            ← Back to Blog
+          </button>
+        </div>
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="post-sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-title">About the Author</div>
+          <div class="author-info">
+            <div class="author-avatar">{{ post.authorName?.[0] || 'A' }}</div>
+            <div>
+              <div class="author-name">{{ post.authorName }}</div>
+              <div class="author-role">Oluchukwu Specialist Hospital</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-card" *ngIf="related.length > 0">
+          <div class="sidebar-title">Related Posts</div>
+          <div class="related-list">
+            <div class="related-item" *ngFor="let r of related" (click)="viewPost(r.slug)">
+              <div class="related-img" *ngIf="r.featuredImage">
+                <img [src]="r.featuredImage" [alt]="r.title">
+              </div>
+              <div class="related-img placeholder" *ngIf="!r.featuredImage"></div>
+              <div>
+                <div class="related-title">{{ r.title }}</div>
+                <div class="related-date">{{ formatDate(r.publishedAt) }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-card cta-card">
+          <h3>Need a Consultation?</h3>
+          <p>Book an appointment with our specialists today.</p>
+          <button class="btn btn-primary" routerLink="/booking">Book Appointment</button>
+        </div>
+      </aside>
+    </div>
+
+  </ng-container>
+
+  <!-- Not found -->
+  <div class="container not-found" *ngIf="!loading && !post">
+    <p>Post not found</p>
+    <button class="btn btn-outline" routerLink="/blog">Back to Blog</button>
+  </div>
+
+</div>

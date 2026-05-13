@@ -1,0 +1,21 @@
+<div class="modal-overlay" *ngIf="isOpen" (click)="close()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h3>Keyboard Shortcuts</h3>
+          <button class="close-btn" (click)="close()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="shortcuts-grid">
+            <div *ngFor="let shortcut of shortcuts" class="shortcut-item">
+              <div class="shortcut-keys">
+                <span *ngIf="shortcut.ctrlKey" class="key">Ctrl</span>
+                <span *ngIf="shortcut.altKey" class="key">Alt</span>
+                <span *ngIf="shortcut.shiftKey" class="key">Shift</span>
+                <span class="key">{{ shortcut.key === ' ' ? 'Space' : shortcut.key }}</span>
+              </div>
+              <div class="shortcut-description">{{ shortcut.description }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

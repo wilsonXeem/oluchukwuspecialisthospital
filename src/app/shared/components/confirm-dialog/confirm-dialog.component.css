@@ -1,0 +1,157 @@
+.confirm-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.confirm-dialog {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 90%;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 0;
+}
+
+.dialog-header h4 {
+  margin: 0;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+.dialog-body {
+  padding: 20px;
+  text-align: center;
+}
+
+.icon-container {
+  margin-bottom: 15px;
+}
+
+.icon-container i {
+  font-size: 48px;
+}
+
+.icon-warning i {
+  color: #ffc107;
+}
+
+.icon-danger i {
+  color: #dc3545;
+}
+
+.icon-info i {
+  color: #17a2b8;
+}
+
+.icon-success i {
+  color: #28a745;
+}
+
+.dialog-body p {
+  margin: 0 0 10px;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.details {
+  color: #666;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 10px;
+  padding: 0 20px 20px;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+}
+
+.btn-warning {
+  background: #ffc107;
+  color: #212529;
+}
+
+.btn-warning:hover {
+  background: #e0a800;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #c82333;
+}
+
+.btn-info {
+  background: #17a2b8;
+  color: white;
+}
+
+.btn-info:hover {
+  background: #138496;
+}
+
+.btn-success {
+  background: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background: #218838;
+}

@@ -1,0 +1,141 @@
+/* Chart Widget Component Styles */
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 0.5rem;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.chart-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.chart-canvas-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.chart-canvas {
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.chart-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.chart-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #ef4444;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.chart-no-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.chart-no-data-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.5;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .chart-container {
+    margin: 0.25rem;
+    padding: 0.75rem;
+  }
+  
+  .chart-title {
+    font-size: 1rem;
+  }
+  
+  .chart-canvas-container {
+    min-height: 150px;
+  }
+  
+  .chart-legend {
+    gap: 0.5rem;
+  }
+  
+  .legend-item {
+    font-size: 0.75rem;
+  }
+}
+
+/* Chart type specific styles */
+.chart-container.line-chart .chart-canvas {
+  background: linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%);
+}
+
+.chart-container.bar-chart .chart-canvas {
+  background: #ffffff;
+}
+
+.chart-container.doughnut-chart .chart-canvas {
+  background: radial-gradient(circle, #ffffff 0%, #f8fafc 100%);
+}
+
+.chart-container.pie-chart .chart-canvas {
+  background: #ffffff;
+}

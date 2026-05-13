@@ -1,0 +1,92 @@
+<div class="service-detail-container" *ngIf="service">
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a routerLink="/home">Home</a> <span>/</span>
+        <a routerLink="/services">Services</a> <span>/</span>
+        <span>{{ service.name }}</span>
+      </div>
+      <div class="hero-icon-wrap">
+        <app-icon [name]="service.iconName" size="36"></app-icon>
+      </div>
+      <h1>{{ service.name }}</h1>
+      <p>{{ service.shortDescription }}</p>
+    </div>
+  </section>
+
+  <section class="detail-section">
+    <div class="container">
+      <div class="detail-grid">
+
+        <div class="detail-main">
+          <div class="detail-block">
+            <h2>Overview</h2>
+            <p>{{ service.description }}</p>
+          </div>
+
+          <div class="detail-block" *ngIf="service.indications?.length">
+            <h2>When Is This Needed?</h2>
+            <ul class="detail-list">
+              <li *ngFor="let item of service.indications">
+                <span class="list-check"><app-icon name="check" size="14"></app-icon></span>
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="detail-block" *ngIf="service.preparation?.length">
+            <h2>How to Prepare</h2>
+            <ul class="detail-list">
+              <li *ngFor="let item of service.preparation; let i = index">
+                <span class="list-num">{{ i + 1 }}</span>
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="detail-block" *ngIf="service.aftercare?.length">
+            <h2>Recovery &amp; Aftercare</h2>
+            <ul class="detail-list">
+              <li *ngFor="let item of service.aftercare">
+                <span class="list-check"><app-icon name="check" size="14"></app-icon></span>
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="disclaimer-block">
+            <span class="disclaimer-icon"><app-icon name="info" size="16"></app-icon></span>
+            <p>The information above is for general guidance only. Your specialist will provide personalised advice based on your individual clinical situation.</p>
+          </div>
+        </div>
+
+        <div class="detail-sidebar">
+          <div class="sidebar-cta">
+            <h3>Ready to Book?</h3>
+            <p>Schedule a consultation with our specialist team.</p>
+            <button class="btn-book-sidebar" (click)="goToBooking()">
+              <app-icon name="calendar" size="16"></app-icon>
+              Book Appointment
+            </button>
+            <a href="tel:{{ hospital.emergency }}" class="btn-call-sidebar">
+              <app-icon name="phone" size="16"></app-icon>
+              {{ hospital.emergency }}
+            </a>
+          </div>
+
+          <div class="other-services" *ngIf="otherServices.length">
+            <h3>Other Services</h3>
+            <div class="other-service-item" *ngFor="let s of otherServices" (click)="goToService(s.slug)">
+              <span class="os-icon"><app-icon [name]="s.iconName" size="18"></app-icon></span>
+              <span class="os-name">{{ s.name }}</span>
+              <span class="os-arrow"><app-icon name="arrow-right" size="14"></app-icon></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>

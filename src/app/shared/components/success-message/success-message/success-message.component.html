@@ -1,0 +1,7 @@
+<div *ngIf="show" class="success-alert" [class.auto-dismiss]="autoDismiss">
+      <div class="success-content">
+        <i class="success-icon">✓</i>
+        <span class="success-text">{{ message }}</span>
+        <button *ngIf="!autoDismiss" (click)="dismiss()" class="close-btn" aria-label="Close">×</button>
+      </div>
+    </div>

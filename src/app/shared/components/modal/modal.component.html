@@ -1,0 +1,14 @@
+<div class="modal-overlay" *ngIf="isOpen" (click)="onOverlayClick($event)">
+  <div class="modal-content" [style.width]="width" [style.max-width]="maxWidth">
+    <div class="modal-header" *ngIf="title || showCloseButton">
+      <h3 *ngIf="title">{{ title }}</h3>
+      <button *ngIf="showCloseButton" class="close-btn" (click)="close()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <ng-content></ng-content>
+    </div>
+    <div class="modal-footer" *ngIf="showFooter">
+      <ng-content select="[slot=footer]"></ng-content>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,218 @@
+<div class="home-container">
+
+  <!-- Emergency Banner -->
+  <div class="emergency-banner">
+    <app-icon name="alert" size="16"></app-icon>
+    <span>Emergency Line:</span>
+    <a href="tel:{{ hospital.emergency }}">{{ hospital.emergency }}</a>
+    <span class="sep">|</span>
+    <span>Available 24/7</span>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content fade-in">
+        <div class="hero-badge">Specialist Hospital &middot; Nnewi, Anambra State</div>
+        <h1 class="hero-title">{{ hospital.tagline }}</h1>
+        <p class="hero-subtitle">{{ hospital.description }}</p>
+        <div class="hero-actions">
+          <button class="btn btn-white" (click)="goToBooking()">
+            <app-icon name="calendar" size="18"></app-icon>
+            Book Appointment
+          </button>
+          <a href="tel:{{ hospital.emergency }}" class="btn btn-emergency-hero">
+            <app-icon name="phone" size="18"></app-icon>
+            Call Emergency Line
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Actions -->
+  <section class="quick-actions-section">
+    <div class="container">
+      <div class="quick-actions-grid">
+        <div class="quick-action-card" (click)="goToBooking()">
+          <span class="qa-icon"><app-icon name="calendar" size="32"></app-icon></span>
+          <h3>Book Appointment</h3>
+          <p>Schedule a consultation with our specialists</p>
+        </div>
+        <div class="quick-action-card" (click)="goToServices()">
+          <span class="qa-icon"><app-icon name="microscope" size="32"></app-icon></span>
+          <h3>Our Services</h3>
+          <p>Endoscopy, laparoscopic and surgical care</p>
+        </div>
+        <div class="quick-action-card" (click)="goToContact()">
+          <span class="qa-icon"><app-icon name="map-pin" size="32"></app-icon></span>
+          <h3>Find Us</h3>
+          <p>Nnewi, along Traffic Light - Ozubulu Rd</p>
+        </div>
+        <a href="tel:{{ hospital.emergency }}" class="quick-action-card qa-call">
+          <span class="qa-icon"><app-icon name="phone" size="32"></app-icon></span>
+          <h3>Call Hospital</h3>
+          <p>{{ hospital.emergency }}</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="about-preview-section">
+    <div class="container">
+      <div class="about-preview-grid">
+        <div class="about-preview-text">
+          <div class="section-label">About Us</div>
+          <h2>Specialist Care You Can Trust</h2>
+          <p>
+            Oluchukwu Specialist Hospital and Endoscopy is a leading specialist centre in Nnewi, Anambra State,
+            dedicated to providing high-quality surgical and endoscopic care. Our experienced team of surgeons
+            and specialists use modern techniques to deliver safe, effective outcomes for every patient.
+          </p>
+          <p>
+            From diagnostic endoscopy to complex laparoscopic surgery, we are committed to treating every
+            patient with precision, compassion, and respect.
+          </p>
+          <button class="btn btn-outline-primary" (click)="goToAbout()">Learn More About Us</button>
+        </div>
+        <div class="about-preview-stats">
+          <div class="stat-card">
+            <span class="stat-icon"><app-icon name="microscope" size="36"></app-icon></span>
+            <h3>Endoscopy</h3>
+            <p>Upper GI &amp; Colonoscopy</p>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon"><app-icon name="scissors" size="36"></app-icon></span>
+            <h3>Laparoscopic</h3>
+            <p>Minimally Invasive Surgery</p>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon"><app-icon name="activity" size="36"></app-icon></span>
+            <h3>Surgical</h3>
+            <p>Multidisciplinary Care</p>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon emergency-icon"><app-icon name="alert" size="36"></app-icon></span>
+            <h3>24/7</h3>
+            <p>Emergency Line</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Preview -->
+  <section class="services-preview-section bg-light">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-label">What We Do</div>
+        <h2>Our Specialist Services</h2>
+        <p>We provide a focused range of specialist surgical and endoscopic services delivered by experienced clinicians.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" *ngFor="let service of featuredServices" (click)="router.navigate(['/services', service.slug])">
+          <div class="service-icon-wrap">
+            <app-icon [name]="service.iconName" size="28"></app-icon>
+          </div>
+          <h3>{{ service.name }}</h3>
+          <p>{{ service.shortDescription }}</p>
+          <span class="service-link">
+            Learn more <app-icon name="arrow-right" size="14"></app-icon>
+          </span>
+        </div>
+      </div>
+      <div class="text-center" style="margin-top: var(--spacing-2xl)">
+        <button class="btn btn-primary" (click)="goToServices()">View All Services</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="why-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-label">Why Choose Us</div>
+        <h2>Specialist Expertise, Patient-Centred Care</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card" *ngFor="let item of whyChooseUs">
+          <div class="why-icon-wrap">
+            <app-icon [name]="item.iconName" size="28"></app-icon>
+          </div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Preview -->
+  <section class="blog-preview-section" *ngIf="latestPosts.length > 0">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-label">Latest from our Blog</div>
+        <h2>Health Insights & Hospital News</h2>
+        <p>Expert articles and updates from our specialist team</p>
+      </div>
+      <div class="blog-preview-grid">
+        <div class="blog-preview-card" *ngFor="let post of latestPosts" (click)="router.navigate(['/blog', post.slug])">
+          <div class="bp-image">
+            <img *ngIf="post.featuredImage" [src]="post.featuredImage" [alt]="post.title">
+            <div *ngIf="!post.featuredImage" class="bp-image-placeholder"></div>
+            <span class="bp-category" *ngIf="post.category">{{ post.category }}</span>
+          </div>
+          <div class="bp-body">
+            <div class="bp-meta">{{ formatDate(post.publishedAt) }} · {{ post.authorName }}</div>
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.excerpt }}</p>
+            <span class="bp-link">Read more →</span>
+          </div>
+        </div>
+      </div>
+      <div class="text-center" style="margin-top: var(--spacing-2xl)">
+        <button class="btn btn-outline-primary" routerLink="/blog">View All Posts</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-grid">
+        <div class="cta-text">
+          <h2>Ready to See a Specialist?</h2>
+          <p>Book an appointment today or call our emergency line for urgent care.</p>
+          <div class="cta-actions">
+            <button class="btn btn-white" (click)="goToBooking()">
+              <app-icon name="calendar" size="18"></app-icon>
+              Book Appointment
+            </button>
+            <button class="btn btn-outline-white" (click)="goToContact()">
+              <app-icon name="map-pin" size="18"></app-icon>
+              Find Us
+            </button>
+          </div>
+        </div>
+        <div class="cta-contact">
+          <div class="cta-contact-item">
+            <span class="cta-contact-icon"><app-icon name="map-pin" size="24"></app-icon></span>
+            <div>
+              <strong>Address</strong>
+              <p>{{ hospital.address }}</p>
+            </div>
+          </div>
+          <div class="cta-contact-item">
+            <span class="cta-contact-icon"><app-icon name="phone" size="24"></app-icon></span>
+            <div>
+              <strong>Emergency / Appointments</strong>
+              <p><a href="tel:{{ hospital.emergency }}">{{ hospital.emergency }}</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

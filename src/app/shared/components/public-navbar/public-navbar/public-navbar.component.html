@@ -1,0 +1,35 @@
+<nav class="public-navbar">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <a routerLink="/home" class="brand-link">
+        <span class="brand-cross">
+          <app-icon name="plus" size="22"></app-icon>
+        </span>
+        <span class="brand-text">{{ hospital.shortName }}</span>
+      </a>
+    </div>
+    <button class="mobile-toggle" (click)="toggleMobileMenu()" aria-label="Toggle menu">
+      <app-icon [name]="mobileMenuOpen ? 'x' : 'menu'" size="22"></app-icon>
+    </button>
+    <ul class="nav-links" [class.mobile-open]="mobileMenuOpen">
+      <li><a routerLink="/home" routerLinkActive="active" (click)="closeMobileMenu()">Home</a></li>
+      <li><a routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()">About</a></li>
+      <li><a routerLink="/services" routerLinkActive="active" (click)="closeMobileMenu()">Services</a></li>
+      <li><a routerLink="/doctors" routerLinkActive="active" (click)="closeMobileMenu()">Doctors</a></li>
+      <li><a routerLink="/patient-info" routerLinkActive="active" (click)="closeMobileMenu()">Patient Info</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()">Contact</a></li>
+      <li>
+        <a href="tel:{{ hospital.emergency }}" class="btn-emergency" (click)="closeMobileMenu()">
+          <app-icon name="phone" size="14"></app-icon>
+          Emergency
+        </a>
+      </li>
+      <li>
+        <a routerLink="/booking" class="btn-book" (click)="closeMobileMenu()">
+          <app-icon name="calendar" size="14"></app-icon>
+          Book Appointment
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,72 @@
+.receipt-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  font-family: monospace;
+}
+
+.receipt-header {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.receipt-header h3 {
+  margin: 0 0 10px 0;
+}
+
+.receipt-number, .receipt-date {
+  margin: 5px 0;
+  font-size: 12px;
+}
+
+.patient-info {
+  margin-bottom: 15px;
+}
+
+.patient-info h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
+
+.patient-info p {
+  margin: 3px 0;
+  font-size: 12px;
+}
+
+.items-list h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+th, td {
+  padding: 4px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  font-weight: bold;
+}
+
+.receipt-total {
+  text-align: right;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+@media print {
+  .receipt-container {
+    border: none;
+    box-shadow: none;
+  }
+}

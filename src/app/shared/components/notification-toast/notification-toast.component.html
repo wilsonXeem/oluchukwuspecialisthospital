@@ -1,0 +1,15 @@
+<div class="toast" [class]="'toast-' + type" *ngIf="visible">
+      <div class="toast-content">
+        <div class="toast-icon">
+          <span *ngIf="type === 'success'">✓</span>
+          <span *ngIf="type === 'error'">✗</span>
+          <span *ngIf="type === 'warning'">⚠</span>
+          <span *ngIf="type === 'info'">ℹ</span>
+        </div>
+        <div class="toast-message">
+          <div class="toast-title" *ngIf="title">{{ title }}</div>
+          <div class="toast-text">{{ message }}</div>
+        </div>
+        <button class="toast-close" (click)="close()" *ngIf="closable">×</button>
+      </div>
+    </div>

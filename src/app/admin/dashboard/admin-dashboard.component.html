@@ -1,0 +1,46 @@
+<div class="dashboard">
+  <div class="dash-header">
+    <div class="dash-title">Dashboard</div>
+    <button class="btn btn-primary" routerLink="/admin/blog/new">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      New Post
+    </button>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-val">{{ totalPosts }}</div>
+      <div class="stat-lbl">Total Posts</div>
+    </div>
+    <div class="stat-card sc-green">
+      <div class="stat-val">{{ publishedPosts }}</div>
+      <div class="stat-lbl">Published</div>
+    </div>
+    <div class="stat-card sc-amber">
+      <div class="stat-val">{{ draftPosts }}</div>
+      <div class="stat-lbl">Drafts</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <span>Recent Posts</span>
+      <a routerLink="/admin/blog" class="see-all">Manage all →</a>
+    </div>
+    <div *ngIf="loading" class="skeleton-list">
+      <div class="skel" *ngFor="let i of [1,2,3]"></div>
+    </div>
+    <div class="post-list" *ngIf="!loading">
+      <div class="post-row" *ngFor="let p of recentPosts" [routerLink]="['/admin/blog/edit', p.id]">
+        <div class="post-info">
+          <div class="post-title">{{ p.title }}</div>
+          <div class="post-meta">{{ p.category }} · {{ formatDate(p.publishedAt || p.createdAt) }}</div>
+        </div>
+        <span class="status-badge" [class.st-published]="p.status === 'published'" [class.st-draft]="p.status === 'draft'">
+          {{ p.status | titlecase }}
+        </span>
+      </div>
+      <div class="empty" *ngIf="recentPosts.length === 0">No posts yet — create your first post</div>
+    </div>
+  </div>
+</div>

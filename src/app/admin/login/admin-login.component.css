@@ -1,0 +1,28 @@
+.login-page { min-height: 100vh; background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); display: flex; align-items: center; justify-content: center; padding: 24px; }
+
+.login-card { background: white; border-radius: 16px; padding: 40px; width: 100%; max-width: 420px; box-shadow: 0 24px 64px rgba(0,0,0,0.3); }
+
+.login-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+.brand-icon { width: 42px; height: 42px; background: #0077b6; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 900; color: white; flex-shrink: 0; }
+.brand-name { font-size: 0.9rem; font-weight: 800; color: #0f172a; line-height: 1.2; }
+.brand-sub { font-size: 0.72rem; color: #64748b; }
+
+.login-title { font-size: 1.5rem; font-weight: 900; color: #0f172a; margin: 0 0 6px; }
+.login-sub { font-size: 0.875rem; color: #64748b; margin: 0 0 28px; }
+
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: 0.82rem; font-weight: 700; color: #374151; margin-bottom: 6px; }
+.form-group input { width: 100%; padding: 10px 14px; border: 1.5px solid #d1d5db; border-radius: 9px; font-size: 0.9rem; color: #0f172a; outline: none; box-sizing: border-box; transition: border-color 0.15s; }
+.form-group input:focus { border-color: #0077b6; }
+
+.password-wrap { position: relative; }
+.password-wrap input { padding-right: 44px; }
+.toggle-pw { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #94a3b8; cursor: pointer; padding: 2px; }
+.toggle-pw:hover { color: #0077b6; }
+
+.field-error { font-size: 0.75rem; color: #dc2626; margin-top: 4px; font-weight: 600; }
+.error-msg { background: #fff5f5; border: 1px solid #fca5a5; color: #dc2626; border-radius: 8px; padding: 10px 14px; font-size: 0.82rem; font-weight: 600; margin-bottom: 16px; }
+
+.btn-login { width: 100%; padding: 12px; background: #0077b6; color: white; border: none; border-radius: 9px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: background 0.15s; margin-top: 4px; }
+.btn-login:hover:not(:disabled) { background: #005f92; }
+.btn-login:disabled { opacity: 0.6; cursor: not-allowed; }

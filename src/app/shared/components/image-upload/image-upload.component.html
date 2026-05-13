@@ -1,0 +1,28 @@
+<div class="image-upload-wrap">
+
+  <!-- Preview -->
+  <div class="preview-area" *ngIf="displayUrl">
+    <img [src]="displayUrl" alt="Preview" class="preview-img">
+    <button class="clear-btn" type="button" (click)="clear()" title="Remove image">✕</button>
+  </div>
+
+  <!-- Drop zone -->
+  <label class="upload-zone" [class.has-image]="displayUrl" [class.uploading]="uploading">
+    <input type="file" accept="image/jpeg,image/png,image/gif,image/webp" (change)="onFileSelected($event)" [disabled]="uploading">
+    <ng-container *ngIf="!uploading && !displayUrl">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span class="upload-label">{{ label }}</span>
+      <span class="upload-hint">JPEG, PNG, GIF up to 5MB</span>
+    </ng-container>
+    <ng-container *ngIf="uploading">
+      <div class="spinner"></div>
+      <span class="upload-label">Uploading…</span>
+    </ng-container>
+    <ng-container *ngIf="!uploading && displayUrl">
+      <span class="change-label">Click to change image</span>
+    </ng-container>
+  </label>
+
+  <div class="upload-error" *ngIf="error">{{ error }}</div>
+
+</div>

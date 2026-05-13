@@ -1,0 +1,55 @@
+<div class="hms-shell" [class.sidebar-collapsed]="sidebarCollapsed">
+
+  <!-- Sidebar -->
+  <aside class="hms-sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon"><app-icon name="plus" size="18"></app-icon></div>
+      <span class="brand-text" *ngIf="!sidebarCollapsed">Oluchukwu HMS</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a *ngFor="let item of menuItems"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        class="nav-item"
+        [title]="item.label">
+        <app-icon [name]="item.icon" size="18"></app-icon>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">{{ item.label }}</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="nav-item logout-btn" (click)="logout()" title="Logout">
+        <app-icon name="arrow-right" size="18" style="transform: rotate(180deg)"></app-icon>
+        <span class="nav-label" *ngIf="!sidebarCollapsed">Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="hms-main">
+
+    <!-- Top bar -->
+    <header class="hms-topbar">
+      <button class="toggle-btn" (click)="toggleSidebar()" title="Toggle sidebar">
+        <app-icon name="menu" size="20"></app-icon>
+      </button>
+
+      <div class="topbar-right">
+        <div class="user-info" *ngIf="currentUser">
+          <div class="user-avatar">{{ userInitials }}</div>
+          <div class="user-details">
+            <span class="user-name">{{ currentUser.firstName }} {{ currentUser.lastName }}</span>
+            <span class="user-role">{{ currentUser.role | titlecase }}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page content -->
+    <main class="hms-content">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <h2>HMS</h2>
+  </div>
+  
+  <div class="navbar-actions" *ngIf="currentUser">
+    <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="'Switch to ' + (currentTheme === 'light' ? 'dark' : 'light') + ' theme'">
+      <span *ngIf="currentTheme === 'light'">🌙</span>
+      <span *ngIf="currentTheme === 'dark'">☀️</span>
+    </button>
+    
+    <div class="notification-icon">
+      <span class="icon">🔔</span>
+      <span class="badge" *ngIf="notificationCount > 0">{{notificationCount}}</span>
+    </div>
+    
+    <div class="user-menu" (click)="toggleUserMenu()">
+      <span class="user-name">{{currentUser.firstName}} {{currentUser.lastName}}</span>
+      <span class="user-role">{{currentUser.role}}</span>
+      <span class="dropdown-arrow">▼</span>
+      
+      <div class="dropdown-menu" *ngIf="showUserMenu">
+        <a (click)="goToProfile()">Profile</a>
+        <a (click)="logout()">Logout</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="auth-links" *ngIf="!currentUser">
+    <a routerLink="/auth/login">Login</a>
+  </div>
+</nav>

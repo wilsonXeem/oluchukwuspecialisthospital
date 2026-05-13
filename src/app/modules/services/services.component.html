@@ -1,0 +1,56 @@
+<div class="services-container">
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a routerLink="/home">Home</a> <span>/</span> <span>Services</span>
+      </div>
+      <h1>Our Services</h1>
+      <p>Specialist endoscopic and surgical care delivered by experienced clinicians</p>
+    </div>
+  </section>
+
+  <section class="services-section">
+    <div class="container">
+
+      <div class="services-intro text-center">
+        <p>We provide a focused range of specialist services in endoscopy and surgery. All procedures are performed by experienced specialists using modern equipment.</p>
+      </div>
+
+      <div class="category-filter">
+        <button class="filter-btn" [class.active]="selectedCategory === 'all'" (click)="selectedCategory = 'all'">All Services</button>
+        <button class="filter-btn" *ngFor="let cat of categories"
+          [class.active]="selectedCategory === cat.key"
+          (click)="selectedCategory = cat.key">
+          {{ cat.label }}
+        </button>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card" *ngFor="let service of filteredServices" (click)="goToService(service.slug)">
+          <div class="service-icon-wrap"><app-icon [name]="service.iconName" size="28"></app-icon></div>
+          <div class="service-category-tag">{{ service.category === 'endoscopy' ? 'Endoscopy' : service.category === 'laparoscopic' ? 'Laparoscopic Surgery' : 'Surgery' }}</div>
+          <h3>{{ service.name }}</h3>
+          <p>{{ service.shortDescription }}</p>
+          <span class="service-cta">
+            View Details <app-icon name="arrow-right" size="14"></app-icon>
+          </span>
+        </div>
+      </div>
+
+      <div class="services-cta text-center">
+        <p>Not sure which service you need? Contact us and we will guide you.</p>
+        <div class="cta-btns">
+          <button class="btn btn-primary" (click)="goToBooking()">
+            <app-icon name="calendar" size="18"></app-icon> Book Appointment
+          </button>
+          <a href="tel:{{ hospital.emergency }}" class="btn btn-emergency">
+            <app-icon name="phone" size="18"></app-icon> Call Us
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>

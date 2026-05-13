@@ -1,0 +1,54 @@
+<div class="doctors-container">
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a routerLink="/home">Home</a> <span>/</span> <span>Our Doctors</span>
+      </div>
+      <h1>Our Specialist Team</h1>
+      <p>Experienced surgeons and clinicians dedicated to your care</p>
+    </div>
+  </section>
+
+  <section class="doctors-section">
+    <div class="container">
+
+      <div *ngIf="loading" class="loading-state">
+        <p>Loading...</p>
+      </div>
+
+      <div class="doctors-grid" *ngIf="!loading">
+        <div class="doctor-card" *ngFor="let doctor of doctors">
+          <div class="doctor-avatar">
+            <app-icon name="user" size="40"></app-icon>
+          </div>
+          <div class="doctor-info">
+            <h3>{{ getDoctorName(doctor) }}</h3>
+            <div class="doctor-specialty">{{ doctor.specialization || doctor.department }}</div>
+            <div class="doctor-qualifications" *ngIf="doctor.qualifications">{{ doctor.qualifications }}</div>
+            <p class="doctor-bio" *ngIf="doctor.bio">{{ doctor.bio }}</p>
+            <button class="btn-book-doctor" (click)="goToBooking()" *ngIf="doctor.isAvailableForBooking">
+              <app-icon name="calendar" size="14"></app-icon>
+              Book Appointment
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="doctors-cta text-center">
+        <h2>Book a Consultation</h2>
+        <p>Ready to see one of our specialists? Book an appointment or call us directly.</p>
+        <div class="cta-btns">
+          <button class="btn btn-primary" (click)="goToBooking()">
+            <app-icon name="calendar" size="18"></app-icon> Book Appointment
+          </button>
+          <a href="tel:{{ hospital.emergency }}" class="btn btn-emergency">
+            <app-icon name="phone" size="18"></app-icon> {{ hospital.emergency }}
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>

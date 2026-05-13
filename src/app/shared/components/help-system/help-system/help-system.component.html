@@ -1,0 +1,48 @@
+<div class="help-system" [class.expanded]="isExpanded">
+      <button class="help-toggle" (click)="toggleHelp()" [attr.aria-label]="isExpanded ? 'Close help' : 'Open help'">
+        <span class="help-icon">?</span>
+      </button>
+      
+      <div class="help-panel" *ngIf="isExpanded">
+        <div class="help-header">
+          <h3>{{ currentHelp?.title || 'Help' }}</h3>
+          <button class="close-btn" (click)="toggleHelp()">&times;</button>
+        </div>
+        
+        <div class="help-content" *ngIf="currentHelp">
+          <div class="help-section">
+            <h4>Overview</h4>
+            <p>{{ currentHelp.description }}</p>
+          </div>
+          
+          <div class="help-section" *ngIf="currentHelp.steps?.length">
+            <h4>How to use</h4>
+            <ol>
+              <li *ngFor="let step of currentHelp.steps">{{ step }}</li>
+            </ol>
+          </div>
+          
+          <div class="help-section" *ngIf="currentHelp.tips?.length">
+            <h4>Tips</h4>
+            <ul>
+              <li *ngFor="let tip of currentHelp.tips">{{ tip }}</li>
+            </ul>
+          </div>
+          
+          <div class="help-section" *ngIf="currentHelp.shortcuts?.length">
+            <h4>Keyboard Shortcuts</h4>
+            <div class="shortcuts-list">
+              <div *ngFor="let shortcut of currentHelp.shortcuts" class="shortcut-item">
+                <kbd>{{ shortcut.key }}</kbd>
+                <span>{{ shortcut.description }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="help-actions">
+          <button class="btn btn-sm btn-outline" (click)="showAllShortcuts()">All Shortcuts</button>
+          <button class="btn btn-sm btn-primary" (click)="contactSupport()">Contact Support</button>
+        </div>
+      </div>
+    </div>

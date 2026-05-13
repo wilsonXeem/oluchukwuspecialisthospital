@@ -1,0 +1,11 @@
+<div *ngIf="showWarning" class="session-warning-overlay">
+      <div class="session-warning-modal">
+        <h3>Session Expiring Soon</h3>
+        <p>Your session will expire in <strong>{{timeRemaining}}</strong></p>
+        <p>Would you like to extend your session?</p>
+        <div class="warning-actions">
+          <button (click)="extendSession()" class="btn-extend">Extend Session</button>
+          <button (click)="logout()" class="btn-logout">Logout Now</button>
+        </div>
+      </div>
+    </div>

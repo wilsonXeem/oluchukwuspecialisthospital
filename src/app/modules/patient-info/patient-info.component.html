@@ -1,0 +1,132 @@
+<div class="patient-info-container">
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a routerLink="/home">Home</a> <span>/</span> <span>Patient Information</span>
+      </div>
+      <h1>Patient Information</h1>
+      <p>Everything you need to know before and after your visit</p>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+
+      <!-- Visiting Info -->
+      <div class="info-block">
+        <div class="block-heading">
+          <div class="block-icon"><app-icon name="hospital" size="22"></app-icon></div>
+          <h2>Visiting the Hospital</h2>
+        </div>
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>What to Bring</h4>
+            <ul>
+              <li>Valid ID (National ID, Passport, or Driver's Licence)</li>
+              <li>Referral letter from your doctor (if available)</li>
+              <li>List of current medications</li>
+              <li>Previous test results or imaging reports</li>
+              <li>Insurance card (if applicable)</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h4>Consulting Hours</h4>
+            <ul>
+              <li>Monday – Friday: 8:00am – 6:00pm</li>
+              <li>Saturday: 9:00am – 3:00pm</li>
+              <li>Emergency: 24/7</li>
+            </ul>
+            <div class="emergency-note">
+              For emergencies outside consulting hours, call:
+              <a href="tel:{{ hospital.emergency }}">{{ hospital.emergency }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Endoscopy Prep -->
+      <div class="info-block">
+        <div class="block-heading">
+          <div class="block-icon"><app-icon name="microscope" size="22"></app-icon></div>
+          <h2>Preparing for Upper GI Endoscopy</h2>
+        </div>
+        <div class="prep-steps">
+          <div class="prep-step" *ngFor="let step of [
+            'Fast for at least 6 hours before the procedure — no food or drink.',
+            'Inform your doctor of all medications, especially blood thinners.',
+            'Arrange for someone to drive you home if sedation will be used.',
+            'Remove dentures, glasses, or jewellery before the procedure.',
+            'Wear comfortable, loose-fitting clothing on the day.'
+          ]; let i = index">
+            <div class="step-num">{{ i + 1 }}</div>
+            <p>{{ step }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonoscopy Prep -->
+      <div class="info-block">
+        <div class="block-heading">
+          <div class="block-icon"><app-icon name="activity" size="22"></app-icon></div>
+          <h2>Preparing for Colonoscopy</h2>
+        </div>
+        <div class="prep-steps">
+          <div class="prep-step" *ngFor="let step of [
+            'Follow a clear liquid diet the day before the procedure.',
+            'Take the prescribed bowel preparation medication as directed.',
+            'Fast from midnight before the procedure.',
+            'Arrange for someone to accompany you and drive you home.',
+            'Inform your doctor of all medications you are taking.'
+          ]; let i = index">
+            <div class="step-num">{{ i + 1 }}</div>
+            <p>{{ step }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Emergency Instructions -->
+      <div class="info-block emergency-block">
+        <div class="block-heading">
+          <div class="block-icon emergency-icon"><app-icon name="alert" size="22"></app-icon></div>
+          <h2>Emergency Instructions</h2>
+        </div>
+        <p>If you experience any of the following after a procedure, contact us immediately or go to the nearest emergency facility:</p>
+        <ul class="emergency-list">
+          <li><span class="em-icon"><app-icon name="alert" size="14"></app-icon></span> Severe abdominal pain</li>
+          <li><span class="em-icon"><app-icon name="alert" size="14"></app-icon></span> Heavy or persistent bleeding</li>
+          <li><span class="em-icon"><app-icon name="alert" size="14"></app-icon></span> High fever (above 38.5°C)</li>
+          <li><span class="em-icon"><app-icon name="alert" size="14"></app-icon></span> Difficulty breathing or swallowing</li>
+          <li><span class="em-icon"><app-icon name="alert" size="14"></app-icon></span> Signs of infection at a wound site</li>
+        </ul>
+        <a href="tel:{{ hospital.emergency }}" class="emergency-call-btn">
+          <app-icon name="phone" size="18"></app-icon>
+          Call Emergency Line: {{ hospital.emergency }}
+        </a>
+      </div>
+
+      <!-- FAQs -->
+      <div class="info-block">
+        <div class="block-heading">
+          <div class="block-icon"><app-icon name="info" size="22"></app-icon></div>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+            <button class="faq-question" (click)="toggleFaq(i)" [class.open]="openFaq === i">
+              {{ faq.q }}
+              <span class="faq-toggle">
+                <app-icon [name]="openFaq === i ? 'minus' : 'plus'" size="16"></app-icon>
+              </span>
+            </button>
+            <div class="faq-answer" [class.visible]="openFaq === i">
+              <p>{{ faq.a }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>

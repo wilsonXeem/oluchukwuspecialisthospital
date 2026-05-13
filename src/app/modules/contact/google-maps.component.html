@@ -1,0 +1,14 @@
+<div class="google-maps">
+  <div class="map-placeholder" *ngIf="!mapError">
+    <div class="map-icon">🗺️</div>
+    <h4>Find Us Here</h4>
+    <p>{{ facilityAddress }}</p>
+    <a [href]="'https://maps.google.com/?q=' + encodeURIComponent(facilityAddress)" 
+       target="_blank" class="directions-link">
+      Get Directions
+    </a>
+  </div>
+  <div class="map-error" *ngIf="mapError">
+    <p>Map temporarily unavailable</p>
+  </div>
+</div>
