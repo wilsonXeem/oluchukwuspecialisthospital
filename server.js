@@ -3,7 +3,7 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-const DIST = path.join(__dirname, 'dist/public/browser');
+const DIST = path.join(__dirname, 'dist/public');
 
 app.use(express.static(DIST));
 
